@@ -142,6 +142,17 @@ cd 'E:\knowledge base\tools\workshop-uploader\bin'
   `Mod`、`Gameplay`、`tools`、`english`、`Simplified Chinese`、`Quality of Life`、`UI`、`Utilities`。
 - `--no-content-update` 时不会上传文件；`workshop.toml` 始终被自动排除。
 
+
+> **若报 `failed to create file ...\io.github.nozwock.steam-workshop-uploader\log\workshop.log...: 拒绝访问`**：
+> 该工具会在 `%LOCALAPPDATA%\io.github.nozwock.steam-workshop-uploader\log` 写日志；如果这个目录被别的程序
+> （尤其是带限制 ACL 的沙箱/杀软）创建过，工具就建不了日志文件。处理办法：
+>
+> ```powershell
+> Remove-Item -Recurse -Force "$env:LOCALAPPDATA\io.github.nozwock.steam-workshop-uploader" -ErrorAction SilentlyContinue
+> New-Item -ItemType Directory -Force "$env:LOCALAPPDATA\io.github.nozwock.steam-workshop-uploader\log" | Out-Null
+> ```
+>
+> 然后再跑工具；还不行就用管理员 PowerShell，或改用方案 B 的 GUI 工具。
 ### 方案 B（GUI 备选）：nihilocrat/SteamWorkshopUploader Build 10
 
 下载：https://github.com/nihilocrat/SteamWorkshopUploader/releases/download/Build10/SteamWorkshopUploader_10_win.zip
