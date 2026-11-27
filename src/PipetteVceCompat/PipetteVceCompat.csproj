@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!--
+    Build against the game's own assemblies (nothing third-party is shipped or referenced):
+      dotnet build -c Release -p:GameManagedDir="<Steam>\steamapps\common\Probably Stolen\Probably Stolen_Data\Managed"
+    or just run build.ps1, which also copies the DLL into ../mod/.
+  -->
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>PipetteVceCompat</AssemblyName>
+    <RootNamespace>PipetteVceCompat</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <OutputPath>bin\</OutputPath>
+    <NoWarn>CS0436;NU1701;MSB3277</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+  </ItemGroup>
+
+  <Target Name="RequireGameManagedDir" BeforeTargets="ResolveAssemblyReferences" Condition="'$(GameManagedDir)' == ''">
+    <Error Text="GameManagedDir is not set. Run build.ps1, or: dotnet build -c Release -p:GameManagedDir=&quot;.../Probably Stolen_Data/Managed&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(GameManagedDir)\Assembly-CSharp.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameManagedDir)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameManagedDir)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>

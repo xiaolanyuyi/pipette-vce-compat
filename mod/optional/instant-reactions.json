@@ -1,0 +1,328 @@
+{
+  "modes": [
+    {
+      "id": "vce_quicklime",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_quicklime",
+      "mainLiquid": "vce_quicklime",
+      "priority": 65,
+      "minShare": 0.12,
+      "stages": [
+        {
+          "id": "vce_purify_base",
+          "labelKey": "vce_stage_purify_base",
+          "kind": "reaction",
+          "substrate": {
+            "liquid": "base",
+            "locations": [
+              "target"
+            ]
+          },
+          "reagent": {
+            "liquid": "vce_quicklime",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "consume": {
+            "target.chemical_contaminant": 1,
+            "pipette.vce_quicklime": 1
+          },
+          "produce": {
+            "base": 1,
+            "vce_calcium_carbonate": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "vce_silica_gel",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_silica_gel",
+      "mainLiquid": "vce_silica_gel",
+      "priority": 65,
+      "minShare": 0.15,
+      "stages": [
+        {
+          "id": "vce_defluorinate_acid",
+          "labelKey": "vce_stage_defluorinate_acid",
+          "kind": "reaction",
+          "substrate": {
+            "liquid": "acid",
+            "locations": [
+              "target"
+            ]
+          },
+          "reagent": {
+            "liquid": "vce_silica_gel",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "requires": {
+            "acid": 0.8,
+            "chemical_contaminant": 0.0001
+          },
+          "temperatureMin": 100,
+          "consume": {
+            "target.chemical_contaminant": 4,
+            "pipette.vce_silica_gel": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "vce_nitric_acid",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_nitric_acid",
+      "mainLiquid": "vce_nitric_acid",
+      "priority": 65,
+      "minShare": 0.15,
+      "stages": [
+        {
+          "id": "vce_nitrate_toluene",
+          "labelKey": "vce_stage_nitrate_toluene",
+          "kind": "reaction",
+          "substrate": {
+            "liquid": "vce_toluene",
+            "locations": [
+              "target"
+            ]
+          },
+          "reagent": {
+            "liquid": "vce_nitric_acid",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "requires": {
+            "acid": 0.1
+          },
+          "temperatureMin": 50,
+          "consume": {
+            "target.vce_toluene": 1,
+            "pipette.vce_nitric_acid": 3
+          },
+          "produce": {
+            "vce_tnt": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "ia_acetic_acid",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_acetic_acid",
+      "mainLiquid": "ia_acetic_acid",
+      "priority": 65,
+      "minShare": 0.15,
+      "stages": [
+        {
+          "id": "vce_esterify_alcohol",
+          "labelKey": "vce_stage_esterify_alcohol",
+          "kind": "reaction",
+          "substrate": {
+            "liquid": "alcohol",
+            "locations": [
+              "target"
+            ]
+          },
+          "reagent": {
+            "liquid": "ia_acetic_acid",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "requires": {
+            "acid": 0.01
+          },
+          "temperatureMin": 60,
+          "temperatureMax": 75,
+          "consume": {
+            "target.alcohol": 1,
+            "pipette.ia_acetic_acid": 1
+          },
+          "produce": {
+            "ia_ethyl_acetate": 1
+          }
+        }
+      ]
+    }
+  ],
+  "patches": [
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_silica_gel_precipitate",
+        "labelKey": "vce_stage_silica_gel_precipitate",
+        "kind": "reaction",
+        "substrate": {
+          "liquid": "vce_water_glass",
+          "locations": [
+            "target"
+          ]
+        },
+        "reagent": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "consume": {
+          "target.vce_water_glass": 1,
+          "pipette.acid": 1
+        },
+        "produce": {
+          "vce_silica_gel": 1,
+          "debris": 1
+        }
+      }
+    },
+    {
+      "mode": "base",
+      "addStage": {
+        "id": "vce_make_water_glass",
+        "labelKey": "vce_stage_make_water_glass",
+        "kind": "reaction",
+        "substrate": {
+          "liquid": "vce_quartz",
+          "locations": [
+            "target"
+          ]
+        },
+        "reagent": {
+          "liquid": "base",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "temperatureMin": 120,
+        "consume": {
+          "target.vce_quartz": 1,
+          "pipette.base": 1
+        },
+        "produce": {
+          "vce_water_glass": 1
+        }
+      }
+    },
+    {
+      "mode": "base",
+      "addStage": {
+        "id": "vce_neutralize_nitric",
+        "labelKey": "vce_stage_neutralize_nitric",
+        "kind": "reaction",
+        "substrate": {
+          "liquid": "vce_nitric_acid",
+          "locations": [
+            "target"
+          ]
+        },
+        "reagent": {
+          "liquid": "base",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "consume": {
+          "target.vce_nitric_acid": 1,
+          "pipette.base": 1
+        }
+      }
+    },
+    {
+      "mode": "base",
+      "addStage": {
+        "id": "vce_neutralize_acetic",
+        "labelKey": "vce_stage_neutralize_acetic",
+        "kind": "reaction",
+        "substrate": {
+          "liquid": "ia_acetic_acid",
+          "locations": [
+            "target"
+          ]
+        },
+        "reagent": {
+          "liquid": "base",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "forbidOver": {
+          "acid": 0,
+          "vce_nitric_acid": 0
+        },
+        "consume": {
+          "target.ia_acetic_acid": 1,
+          "pipette.base": 1
+        }
+      }
+    },
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_crackine_salt",
+        "labelKey": "vce_stage_crackine_salt",
+        "kind": "reaction",
+        "substrate": {
+          "liquid": "vce_alkaloid",
+          "locations": [
+            "target"
+          ]
+        },
+        "reagent": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "temperatureMin": 100,
+        "forbidOver": {
+          "water": 0.01
+        },
+        "consume": {
+          "target.vce_alkaloid": 10,
+          "pipette.acid": 1
+        },
+        "produce": {
+          "vce_crackine_powder": 10
+        }
+      }
+    },
+    {
+      "mode": "alcohol",
+      "addStage": {
+        "id": "vce_lantern_ester",
+        "labelKey": "vce_stage_lantern_ester",
+        "kind": "reaction",
+        "substrate": {
+          "liquid": "vce_capsaicin",
+          "locations": [
+            "target"
+          ]
+        },
+        "reagent": {
+          "liquid": "alcohol",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "temperatureMin": 50,
+        "requires": {
+          "alcohol": 0.8
+        },
+        "consume": {
+          "target.vce_capsaicin": 1,
+          "pipette.alcohol": 0.1
+        },
+        "produce": {
+          "vce_lantern_ester": 1
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+# 移液枪 × 原版化学扩展 兼容补丁（配平版）
+vce_mode_quicklime,生石灰·苛化配平
+vce_mode_silica_gel,硅胶·脱氟配平
+vce_mode_nitric_acid,硝酸·硝化配平
+vce_mode_acetic_acid,乙酸·酯化配平
+vce_mode_dream_extract,梦帽萃取液·1:1 配平
+vce_mode_water_glass,水玻璃·玻璃固化配平
+vce_mode_ethyl_acetate,乙酸乙酯·钚萃取配平
+vce_stage_balance_quicklime,补生石灰到与化学污染物 1:1（苛化）
+vce_stage_balance_silica,补硅胶到化学污染物的 1/4（脱氟）
+vce_stage_balance_nitric,补硝酸到甲苯的 3 倍（硝化）
+vce_stage_balance_acetic,补乙酸到酒精的 1 倍（酯化）
+vce_stage_balance_extract,补梦帽萃取液到与梦魇帽萃取液 1:1
+vce_stage_balance_vitrify,补水玻璃到放射性液体总量的 1 倍（玻璃固化）
+vce_stage_balance_extractant,补乙酸乙酯到裂变产物的 2 倍
+vce_stage_balance_dream_toxin,补原版酸到萃取液总量的约 2.5%（梦毒要求 0.5–5%）
+vce_stage_balance_crackine,补原版酸到生物碱的 10%（快克因成盐）
+vce_stage_balance_water_glass,补原版酸到水玻璃的 1 倍（析出硅胶）
+vce_stage_balance_tnt_catalyst,补原版酸到混液总量的约 10%（硝化催化）
+vce_stage_balance_ester_catalyst,补原版酸到混液总量的约 1%（酯化催化）
+vce_stage_balance_barrel_acid,补原版酸到废燃料的 1 倍（溶解）
+vce_stage_balance_quartz,补碱到石英的 1 倍（制水玻璃）
+vce_stage_balance_neutralize_nitric,补碱到与硝酸 1:1（中和）
+vce_stage_balance_neutralize_acetic,补碱到与乙酸 1:1（中和）
+vce_stage_balance_lantern,补酒精到辣椒素的 4 倍（辣酯）
+vce_stage_balance_reductant,补还原剂到溶解钚的 10 倍

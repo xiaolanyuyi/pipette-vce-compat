@@ -1,0 +1,507 @@
+{
+  "modes": [
+    {
+      "id": "vce_quicklime",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_quicklime",
+      "mainLiquid": "vce_quicklime",
+      "priority": 65,
+      "minShare": 0.12,
+      "stages": [
+        {
+          "id": "vce_balance_quicklime",
+          "labelKey": "vce_stage_balance_quicklime",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "chemical_contaminant",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "vce_quicklime",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 1
+        }
+      ]
+    },
+    {
+      "id": "vce_silica_gel",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_silica_gel",
+      "mainLiquid": "vce_silica_gel",
+      "priority": 65,
+      "minShare": 0.15,
+      "stages": [
+        {
+          "id": "vce_balance_silica",
+          "labelKey": "vce_stage_balance_silica",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "chemical_contaminant",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "vce_silica_gel",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 0.25,
+          "requires": {
+            "acid": 0.8
+          }
+        }
+      ]
+    },
+    {
+      "id": "vce_nitric_acid",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_nitric_acid",
+      "mainLiquid": "vce_nitric_acid",
+      "priority": 65,
+      "minShare": 0.15,
+      "stages": [
+        {
+          "id": "vce_balance_nitric",
+          "labelKey": "vce_stage_balance_nitric",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "vce_toluene",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "vce_nitric_acid",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 3
+        }
+      ]
+    },
+    {
+      "id": "ia_acetic_acid",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_acetic_acid",
+      "mainLiquid": "ia_acetic_acid",
+      "priority": 65,
+      "minShare": 0.15,
+      "stages": [
+        {
+          "id": "vce_balance_acetic",
+          "labelKey": "vce_stage_balance_acetic",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "alcohol",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "ia_acetic_acid",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 1
+        }
+      ]
+    },
+    {
+      "id": "dream_cap_extract",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_dream_extract",
+      "mainLiquid": "dream_cap_extract",
+      "priority": 65,
+      "minShare": 0.2,
+      "stages": [
+        {
+          "id": "vce_balance_extract",
+          "labelKey": "vce_stage_balance_extract",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "nightmare_extract",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "dream_cap_extract",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 1
+        }
+      ]
+    },
+    {
+      "id": "vce_water_glass",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_water_glass",
+      "mainLiquid": "vce_water_glass",
+      "priority": 65,
+      "minShare": 0.3,
+      "stages": [
+        {
+          "id": "vce_balance_vitrify",
+          "labelKey": "vce_stage_balance_vitrify",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "nc_spent_fuel",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "vce_water_glass",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 1,
+          "additionalSubstrates": [
+            {
+              "liquid": "nc_pu_dissolved",
+              "locations": [
+                "target"
+              ]
+            },
+            {
+              "liquid": "nc_fission_products",
+              "locations": [
+                "target"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ia_ethyl_acetate",
+      "implementation": "custom",
+      "detect": "share",
+      "labelKey": "vce_mode_ethyl_acetate",
+      "mainLiquid": "ia_ethyl_acetate",
+      "priority": 65,
+      "minShare": 0.25,
+      "stages": [
+        {
+          "id": "vce_balance_extractant",
+          "labelKey": "vce_stage_balance_extractant",
+          "kind": "topup",
+          "conversion": false,
+          "substrate": {
+            "liquid": "nc_fission_products",
+            "locations": [
+              "target"
+            ]
+          },
+          "catalytic": {
+            "liquid": "ia_ethyl_acetate",
+            "locations": [
+              "pipette"
+            ]
+          },
+          "catalyticFullAt": 2,
+          "requiresAny": [
+            "nc_pu_dissolved"
+          ]
+        }
+      ]
+    }
+  ],
+  "patches": [
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_balance_dream_toxin",
+        "labelKey": "vce_stage_balance_dream_toxin",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "dream_cap_extract",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 0.02564,
+        "additionalSubstrates": [
+          {
+            "liquid": "nightmare_extract",
+            "locations": [
+              "target"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_balance_crackine",
+        "labelKey": "vce_stage_balance_crackine",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "vce_alkaloid",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 0.1,
+        "forbidOver": {
+          "water": 0.01
+        }
+      }
+    },
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_balance_water_glass",
+        "labelKey": "vce_stage_balance_water_glass",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "vce_water_glass",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 1
+      }
+    },
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_balance_tnt_catalyst",
+        "labelKey": "vce_stage_balance_tnt_catalyst",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "vce_toluene",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 0.1111,
+        "additionalSubstrates": [
+          {
+            "liquid": "vce_nitric_acid",
+            "locations": [
+              "target"
+            ]
+          }
+        ],
+        "requiresAny": [
+          "vce_nitric_acid"
+        ]
+      }
+    },
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_balance_ester_catalyst",
+        "labelKey": "vce_stage_balance_ester_catalyst",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "alcohol",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 0.0202,
+        "requiresAny": [
+          "ia_acetic_acid"
+        ]
+      }
+    },
+    {
+      "mode": "acid",
+      "addStage": {
+        "id": "vce_balance_barrel_acid",
+        "labelKey": "vce_stage_balance_barrel_acid",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "nc_spent_fuel",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "acid",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 1
+      }
+    },
+    {
+      "mode": "base",
+      "addStage": {
+        "id": "vce_balance_quartz",
+        "labelKey": "vce_stage_balance_quartz",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "vce_quartz",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "base",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 1
+      }
+    },
+    {
+      "mode": "base",
+      "addStage": {
+        "id": "vce_balance_neutralize_nitric",
+        "labelKey": "vce_stage_balance_neutralize_nitric",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "vce_nitric_acid",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "base",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 1
+      }
+    },
+    {
+      "mode": "base",
+      "addStage": {
+        "id": "vce_balance_neutralize_acetic",
+        "labelKey": "vce_stage_balance_neutralize_acetic",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "ia_acetic_acid",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "base",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 1,
+        "forbidOver": {
+          "acid": 0,
+          "vce_nitric_acid": 0
+        }
+      }
+    },
+    {
+      "mode": "alcohol",
+      "addStage": {
+        "id": "vce_balance_lantern",
+        "labelKey": "vce_stage_balance_lantern",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "vce_capsaicin",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "alcohol",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 4
+      }
+    },
+    {
+      "mode": "reducing",
+      "addStage": {
+        "id": "vce_balance_reductant",
+        "labelKey": "vce_stage_balance_reductant",
+        "kind": "topup",
+        "conversion": false,
+        "substrate": {
+          "liquid": "nc_pu_dissolved",
+          "locations": [
+            "target"
+          ]
+        },
+        "catalytic": {
+          "liquid": "reducing_agent",
+          "locations": [
+            "pipette"
+          ]
+        },
+        "catalyticFullAt": 10
+      }
+    }
+  ]
+}

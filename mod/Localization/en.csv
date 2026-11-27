@@ -1,0 +1,26 @@
+# Pipette x Vanilla Chem Ext compat (ratio-balancing build)
+vce_mode_quicklime,Quicklime - causticize balancing
+vce_mode_silica_gel,Silica gel - defluorination balancing
+vce_mode_nitric_acid,Nitric acid - nitration balancing
+vce_mode_acetic_acid,Acetic acid - esterification balancing
+vce_mode_dream_extract,Dream cap extract - 1:1 balancing
+vce_mode_water_glass,Water glass - vitrification balancing
+vce_mode_ethyl_acetate,Ethyl acetate - plutonium extraction balancing
+vce_stage_balance_quicklime,Top up quicklime to 1:1 with the chemical contaminant
+vce_stage_balance_silica,Top up silica gel to 1/4 of the chemical contaminant
+vce_stage_balance_nitric,Top up nitric acid to 3x the toluene
+vce_stage_balance_acetic,Top up acetic acid to 1x the alcohol
+vce_stage_balance_extract,Top up dream cap extract to 1:1 with nightmare extract
+vce_stage_balance_vitrify,Top up water glass to 1x the radioactive liquids
+vce_stage_balance_extractant,Top up ethyl acetate to 2x the fission products
+vce_stage_balance_dream_toxin,Top up vanilla acid to about 2.5 pct of the extracts (dream toxin needs 0.5-5 pct)
+vce_stage_balance_crackine,Top up vanilla acid to 10 pct of the alkaloid
+vce_stage_balance_water_glass,Top up vanilla acid to 1x the water glass
+vce_stage_balance_tnt_catalyst,Top up vanilla acid to about 10 pct of the mix (nitration catalyst)
+vce_stage_balance_ester_catalyst,Top up vanilla acid to about 1 pct of the mix (esterification catalyst)
+vce_stage_balance_barrel_acid,Top up vanilla acid to 1x the spent fuel (dissolving)
+vce_stage_balance_quartz,Top up base to 1x the quartz (water glass)
+vce_stage_balance_neutralize_nitric,Top up base to 1:1 with the nitric acid
+vce_stage_balance_neutralize_acetic,Top up base to 1:1 with the acetic acid
+vce_stage_balance_lantern,Top up alcohol to 4x the capsaicin
+vce_stage_balance_reductant,Top up reducing agent to 10x the dissolved plutonium
