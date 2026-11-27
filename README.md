@@ -1,7 +1,9 @@
 # 移液枪 × 原版化学扩展 兼容补丁（一键配平版）
 
 > **Pipette × Vanilla Chem Ext Compat** — an unofficial compatibility patch for the game  
-> **《深空当铺·可能是偷的》(Probably Stolen) 0.46D**
+> **《深空当铺·可能是偷的》(Probably Stolen) 1.0.0.16（VERSION 100-Rev16）**
+
+![预览 / preview](mod/preview.png)
 
 让 **Pen的移液枪**（超级移液枪 / 自动移液枪）给 **原版化学扩展 (Vanilla Chemistry Expansion)** 的配方做
 **一键配平**：吸满试剂后拖到目标容器一次，自动把试剂补到配方要求的化学计量比；已经配平就不动作、不过量。
@@ -15,10 +17,10 @@
 
 | 项目 | 版本 |
 |---|---|
-| 游戏 | 深空当铺·可能是偷的（Probably Stolen）**0.46D** |
+| 游戏 | 深空当铺·可能是偷的（Probably Stolen）**1.0.0.16（VERSION 100-Rev16）** |
 | 前置 mod 1 | **Pen的移液枪 / Pen_mod_pipette 1.1.5**（创意工坊 3829409725） |
 | 前置 mod 2 | **原版化学扩展 / Vanilla Chemistry Expansion 1.11.1**（创意工坊 3832077837） |
-| 本补丁 | 2.0.0 |
+| 本补丁 | **2.0.1**（创意工坊版与 Releases 内容一致） |
 
 两个前置 mod 的作者更新后，若改了移液枪的交互入口，桶守卫会自动跳过（日志有 Warn），**配平规则不受影响**。
 
@@ -72,7 +74,9 @@
 1. 订阅并启用两个前置 mod：
    - [Pen的移液枪](https://steamcommunity.com/sharedfiles/filedetails/?id=3829409725)
    - [原版化学扩展](https://steamcommunity.com/sharedfiles/filedetails/?id=3832077837)
-2. 下载本仓库 [Releases](https://github.com/xiaolanyuyi/pipette-vce-compat/releases) 里的 zip，解压出
+2. 安装本补丁（二选一）：
+   - **Steam 创意工坊**：在工坊订阅本补丁，Steam 下载后到游戏内 MOD 列表启用；
+   - **本地安装**：下载本仓库 [Releases](https://github.com/xiaolanyuyi/pipette-vce-compat/releases) 里的 zip，解压出
    `pipette_vce_compat` 文件夹，整个放进：
    ```
    <Steam>\steamapps\common\Probably Stolen\Mods\pipette_vce_compat\
@@ -121,6 +125,22 @@
 
 ---
 
+## 发布到创意工坊（维护者）
+
+游戏没有内置上传按钮，创意工坊物品用 Valve 的 `steamcmd` 上传（社区官方模组指南的推荐方式）。本仓库已备好：
+
+- `workshop/pipette_vce_compat.vdf` — 物品描述文件模板（`appid 4348910`，`publishedfileid 0` 表示新建）
+- `workshop/description.bbcode` — 可直接粘贴到创意工坊页面的富文本描述（中英双语）
+- `workshop/PUBLISHING.md` — 完整步骤：首次上传、法律协议、标签、可见性、更新流程、验收清单
+
+快速开始：
+
+```powershell
+steamcmd +login <你的Steam账号> +workshop_build_item "E:\knowledge base\pipette-vce-compat\workshop\pipette_vce_compat.vdf" +quit
+```
+
+上传成功后 steamcmd 会把新物品 id 回写到 VDF；之后原样再跑一次就是更新。
+
 ## 从源码构建
 
 需要 [.NET SDK](https://dotnet.microsoft.com/download)（本项目用 netstandard2.1，dotnet 6+ 均可编译）。
@@ -168,6 +188,8 @@ build.ps1                   一键构建脚本
 - 移液枪的 hydra 反应/配平路径不混温、不过滤（移液枪固有行为），容器价格/水质标签可能延后一 tick 刷新。
 - 本补丁不处理：钚液体直接倒进酒瓶不会加"核子饮料"标记（VCE 只给"用钚安瓿扎酒"加）。
 - 非官方补丁，不保证与将来版本的移液枪/原版化学扩展兼容；若作者更新后失效，欢迎提 issue。
+- 创意工坊版与 Releases 内容一致；同一 Mod ID 的本地副本会优先于工坊副本（方便自己测试新版本）。
+- `<GameVersions>` 写的是 `1.0.0`（覆盖 1.0.0.16）。旧编号 `0.46D` 在 1.0 之后会被游戏当作"pre-1.0 numbering"忽略。
 
 ---
 

@@ -1,0 +1,62 @@
+[h1]移液枪 × 原版化学扩展 兼容补丁[/h1]
+[b]让 Pen的移液枪的「自动移液枪 / 超级移液枪」给原版化学扩展的配方做一键配平。[/b]
+
+[h2]—— 前置模组（必须手动订阅） ——[/h2]
+[list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829409725]Pen的移液枪 / Pen's Pipette[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=3832077837]原版化学扩展 / Vanilla Chemistry Expansion[/url]
+[/list]
+本模组的清单里已经声明这两个前置，游戏会在启用时检查；但 Steam 不会自动替你订阅，请先手动订阅它们。
+
+[h2]—— 这个补丁做什么 ——[/h2]
+[h3]1. 一键配平（18 条规则）[/h3]
+把移液枪吸满对应试剂后拖到目标容器一次，就会自动把试剂补到配方要求的比例；[b]已经配平就不动作、不会过量[/b]，反应本身仍由原版化学扩展按它自己的每秒/过夜结算进行，不是跳过它的化学。
+[list]
+[*]生石灰 → 苛化提纯碱（污染物 1:1）
+[*]硅胶 → 酸脱氟（污染物 1:4）
+[*]硝酸 → 甲苯硝化制炸药（甲苯:硝酸 = 1:3）
+[*]乙酸 → 酯化制乙酸乙酯（酒精:乙酸 = 1:1）
+[*]梦帽萃取液 ↔ 梦魇帽萃取液（1:1，梦魔菌毒素）
+[*]水玻璃 → 放射性液体玻璃固化（1:1）
+[*]乙酸乙酯 → 钚萃取（裂变产物 1:2）
+[*]原版酸 → 梦毒 / 硝化 / 酯化的催化酸比例、快克因成盐（生物碱 10:1）、析出硅胶、核废料溶解
+[*]原版碱 → 制水玻璃、中和硝酸 / 乙酸
+[*]酒精 → 辣椒素辣酯（辣椒素 1:4）
+[*]还原剂 → 溶解钚（1:10）
+[/list]
+
+[h3]2. 修复核废料桶漏洞[/h3]
+撬开的核废料桶里的放射液（废燃料 / 溶解钚 / 裂变产物）不能再被移液枪吸走；往桶里倒试剂不受影响，溶解、还原、萃取、固化流程照常。
+
+[h2]—— 使用要点 ——[/h2]
+[list]
+[*]先放底物、再把试剂拖上去；枪容量 100 mL，大体积（如核废料桶的 500 mL 酸）多拖几次，每次只补差额。
+[*]硝化先加硝酸再补催化酸；酯化先加乙酸再补催化酸。顺序反了再拖一次就会补正。
+[*]核废料顺序：浓酸（先加，VCE 要求酸占非放射性液体 ≥98%）→ 还原剂 → 乙酸乙酯 → 加热到 300°C 后补水玻璃固化。
+[*]稀释试剂也能识别：矿石路线的生石灰通常只有 25–30%，照样可以直接用；随行的杂质用 VCE 的[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3832077837]水滤芯[/url]收尾即可。
+[/list]
+
+[h2]—— 兼容版本 ——[/h2]
+[list]
+[*]游戏：1.0.0.16（VERSION 100-Rev16）
+[*]Pen的移液枪：1.1.5
+[*]原版化学扩展：1.11.1
+[/list]
+两个前置模组更新后，如果移液枪改了交互入口，桶守卫会自动跳过（日志有 Warn），配平规则不受影响。
+
+[h2]—— 说明 / 源码 / 更新记录 ——[/h2]
+[list]
+[*]完整说明（含生石灰纯度 FAQ、限制、构建方法）：[url=https://github.com/xiaolanyuyi/pipette-vce-compat]github.com/xiaolanyuyi/pipette-vce-compat[/url]
+[*]本补丁为玩家自制非官方兼容补丁，不包含两款原模组的任何文件；两款原模组版权归其作者（Pen / gdm56）。
+[*]MIT License。多语言内容由社区翻译，欢迎反馈。
+[/list]
+
+[h1]English[/h1]
+[b]Unofficial compatibility patch: Pen's Pipette × Vanilla Chemistry Expansion[/b]
+
+[list]
+[*][b]One-drag ratio balancing (18 rules)[/b]: fill the auto-pipette with a reagent and drag it onto the target once; it tops the reagent up to the recipe's stoichiometric ratio and does nothing when already balanced. The reaction itself is still done by Vanilla Chemistry Expansion's own per-second/night tick.
+[*][b]Nuclear barrel guard[/b]: radioactive liquids can no longer be sucked out of an opened nuclear waste barrel with the pipette; pouring reagents in still works.
+[*]Requires (subscribe manually): [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3829409725]Pen's Pipette[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3832077837]Vanilla Chemistry Expansion[/url].
+[*]Game 1.0.0.16; Pipette 1.1.5; Vanilla Chem Ext 1.11.1. Source & docs: [url=https://github.com/xiaolanyuyi/pipette-vce-compat]GitHub[/url].
+[/list]

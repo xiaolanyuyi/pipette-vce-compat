@@ -1,0 +1,21 @@
+"workshopitem"
+{
+    // Probably Stolen / 深空当铺·可能是偷的
+    "appid"            "4348910"
+
+    // 0 = 创建新物品；上传成功后 steamcmd 会把新 id 写回这里，之后原样再跑就是“更新”
+    "publishedfileid"  "0"
+
+    // 要上传的模组文件夹（manifest.xml 必须在根目录）
+    "contentfolder"    "E:\\knowledge base\\pipette-vce-compat\\mod"
+
+    // 创意工坊预览图（≤1 MB，正方形 512×512 或 1024×1024 都行）
+    "previewfile"      "E:\\knowledge base\\pipette-vce-compat\\mod\\preview.png"
+
+    // 0 = 公开，1 = 仅好友，2 = 隐藏（第一次建议先用 2 测试）
+    "visibility"       "2"
+
+    "title"            "移液枪 × 原版化学扩展 兼容补丁 / Pipette × Vanilla Chem Ext Compat"
+    "description"      "一键配平补丁。完整说明见创意工坊页面；需要 Pen的移液枪 + 原版化学扩展。"
+    "changenote"       "v2.0.1 首次上传"
+}

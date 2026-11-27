@@ -1,5 +1,14 @@
 # 更新记录
 
+## 2.0.1 — 2026-11-27（上架准备）
+
+- `manifest.xml` 的 `<GameVersions>` 从旧编号 `0.46D` 改为 `1.0.0`（覆盖 1.0.0.16 / VERSION 100-Rev16；
+  旧编号在 1.0 之后的游戏里会被当作 pre-1.0 numbering 忽略，不再参与兼容着色）。
+- 新增 `preview.png`（512×512，<1 MB）：模组菜单预览图 / 创意工坊物品预览图。
+- 新增创意工坊发布资料：`workshop/pipette_vce_compat.vdf`（VDF 模板）、
+  `workshop/description.bbcode`（中英双语工坊描述）、`workshop/PUBLISHING.md`（steamcmd 发布步骤）。
+- 无代码与配平规则变更。
+
 ## 2.0.0 — 2026-11-27
 
 - **重做为「一键配平版」**：18 条规则全部改为移液枪内置 `topup` 配平（`conversion:false`），

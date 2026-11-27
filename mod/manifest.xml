@@ -3,10 +3,10 @@
   <ID>pipette_vce_compat</ID>
   <Name>移液枪 × 原版化学扩展 兼容补丁 / Pipette × Vanilla Chem Ext Compat</Name>
   <Author>community compat patch</Author>
-  <ModVersion>2.0.0</ModVersion>
+  <ModVersion>2.0.1</ModVersion>
   <Description>让 Pen的移液枪（超级移液枪/自动移液枪）给原版化学扩展的配方做“一键配平”：吸满试剂后拖到目标容器一次，自动补到配方要求的化学计量比（生石灰:污染物 1:1、硅胶:污染物 1:4、石英:碱 1:1、水玻璃:酸 1:1、甲苯:硝酸 1:3、酒精:乙酸 1:1、生物碱:酸 10:1、辣椒素:酒精 1:4、溶解钚:还原剂 1:10、裂变产物:乙酸乙酯 1:2、放射性:水玻璃 1:1、梦帽:梦魇萃取液 1:1，以及梦毒/硝化/酯化所需的催化酸比例），已配平时不动作、不会过量。反应本身仍由原版化学扩展按它自己的每秒/夜间结算进行，不跳过它的化学。另：打开过的核废料桶不再能被移液枪吸走本不该离开的放射性液体。需要同时启用 Pen_mod_pipette 与 vanilla_chem_ext。</Description>
   <GameVersions>
-    <Version>0.46D</Version>
+    <Version>1.0.0</Version>
   </GameVersions>
   <Prerequisites>
     <Mod>Pen_mod_pipette</Mod>
