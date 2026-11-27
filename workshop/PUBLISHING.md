@@ -106,6 +106,66 @@ src\clientdll\clientugc.cpp (2088) : k_EPublishedFileStorageSystemLegacyCloud ==
 3. 如果网页编辑器也报 limit：先试 JPG（仓库里有 `workshop/preview.jpg`，54 KB；对应的 `pipette_vce_compat.jpgpreview.vdf` 是给 steamcmd 再试的版本），
    或等 24 小时（新账号/UGC 上传有速率限制），或换用基于 Steamworks SDK 的上传工具（如 SteamWorkshopUploader）。
 
+## 3.6 设置标签与预览图（steamcmd 做不到）
+
+Steam 网页只允许改**标题 / 描述 / 截图**；**标签（tags）和封面预览图**只能由上传工具通过 Steamworks SDK 的
+`SetItemTags` / `SetItemPreview` 设置：
+
+- steamcmd 的 VDF **不支持 tags**（Steam 官方文档/社区一致结论：tags 只能经 `ISteamUGC::SetItemTags`）；
+- 预览图在 4348910 这个 App 上走 steamcmd 会命中 legacy cloud 断言并报 `UGC Upload Limit exceeded`（见 §3.5）。
+
+所以物品已创建（内容上传成功）之后，用下面任一个 **Steamworks SDK 工具**补标签和预览图。
+两者都要求 **Steam 客户端正在运行、并登录着上传该物品的账号**（不需要再输密码，走本机 Steam 会话）。
+
+### 方案 A（推荐，已下载到本机）：nozwock/steam-workshop-uploader 0.2.0
+
+路径：`E:\knowledge base\tools\workshop-uploader\bin\workshop.exe`（旁边已有 `steam_api64.dll`）。
+先把 `workshop/steam_appid.txt` 复制到该 bin 目录（内容 `4348910`，保险起见）。
+
+```powershell
+cd 'E:\knowledge base\tools\workshop-uploader\bin'
+
+# 1) 在内容目录生成 workshop.toml（工具会自动把它排除在上传内容之外）
+.\workshop.exe init --content 'E:\knowledge base\pipette-vce-compat\mod' --app-id 4348910 --item-id 3846674523 `
+  --tag Mod --tag Gameplay --tag 'Simplified Chinese'
+
+# 2) 只更新元数据（标签 + 预览图），不重传内容
+.\workshop.exe update --content 'E:\knowledge base\pipette-vce-compat\mod' `
+  --preview 'E:\knowledge base\pipette-vce-compat\mod\preview.png' `
+  --tag Mod --tag Gameplay --tag 'Simplified Chinese' `
+  --visibility Public --no-content-update
+```
+
+- 如果标签校验报错，它会打印该 App 的合法标签列表；从现有物品可见的合法值包括
+  `Mod`、`Gameplay`、`tools`、`english`、`Simplified Chinese`、`Quality of Life`、`UI`、`Utilities`。
+- `--no-content-update` 时不会上传文件；`workshop.toml` 始终被自动排除。
+
+### 方案 B（GUI 备选）：nihilocrat/SteamWorkshopUploader Build 10
+
+下载：https://github.com/nihilocrat/SteamWorkshopUploader/releases/download/Build10/SteamWorkshopUploader_10_win.zip
+
+1. 解压后，用本仓库的 `workshop/steam_appid.txt` 覆盖程序目录里的同名文件（原内容是 480）。
+2. 用 `workshop/SteamWorkshopUploader.config.json` 覆盖程序目录的 `config.json`（内含本 App 合法标签校验）。
+3. 启动 Steam 客户端并登录 → 运行程序 → 在列表里新建一个条目。
+4. 关闭程序，编辑生成的 `WorkshopContent\<条目>.workshop.json`，按 `workshop/workshop-item.template.json`
+   填入 `publishedfileid` = `3846674523`（更新已有物品而不是新建），保存。
+5. 重新打开程序 → 选中条目 → Upload / Update。
+
+### 验证
+
+完成后刷新物品页：右侧方形预览图和标签应出现；也可以用 Steam API 核对：
+
+```powershell
+Invoke-RestMethod -Uri 'https://api.steampowered.com/ISteamRemoteStorage/GetPublishedFileDetails/v1/' -Method Post `
+  -Body @{ itemcount = 1; 'publishedfileids[0]' = 3846674523 } | % { $_.response.publishedfiledetails[0] | Select preview_url,tags }
+```
+
+`preview_url` 非空、`tags` 有值就说明成功。
+
+### 如果两个工具都失败
+
+去问一下 Pen / gdm56 是怎么给这个 App 的模组设置预览图和标签的（他们的物品都有封面），
+或者用他们的上传配置作参考。理论上任何基于 Steamworks SDK 的工具都可以。
 ## 4. 上传后：在创意工坊页面上完善
 
 物品地址：`https://steamcommunity.com/sharedfiles/filedetails/?id=<上一步打印的 id>`
