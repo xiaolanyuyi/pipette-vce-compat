@@ -125,24 +125,6 @@
 苛化后用水滤芯（22）过滤碱：矿物质、物理污染物、剩余生石灰、碳酸钙、碎屑都会被滤掉，重金属靠碱沉降。
 注意稀释试剂会把碱稀释，苛化要求碱占总液量 ≥50%，必要时先加碱或先滤杂质。
 
----
-
-## 发布到创意工坊（维护者）
-
-游戏没有内置上传按钮，创意工坊物品用 Valve 的 `steamcmd` 上传（社区官方模组指南的推荐方式）。本仓库已备好：
-
-- `workshop/pipette_vce_compat.vdf` — 物品描述文件模板（`appid 4348910`，`publishedfileid 0` 表示新建）
-- `workshop/description.bbcode` — 可直接粘贴到创意工坊页面的富文本描述（中英双语）
-- `workshop/PUBLISHING.md` — 完整步骤：首次上传、法律协议、标签、可见性、更新流程、验收清单
-
-快速开始：
-
-```powershell
-steamcmd +login <你的Steam账号> +workshop_build_item "E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\workshop\pipette_vce_compat.vdf" +quit
-```
-
-上传成功后 steamcmd 会把新物品 id 回写到 VDF；之后原样再跑一次就是更新。
-
 ## 从源码构建
 
 需要 [.NET SDK](https://dotnet.microsoft.com/download)（本项目用 netstandard2.1，dotnet 6+ 均可编译）。
