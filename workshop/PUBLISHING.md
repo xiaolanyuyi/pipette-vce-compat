@@ -103,7 +103,7 @@ src\clientdll\clientugc.cpp (2088) : k_EPublishedFileStorageSystemLegacyCloud ==
    - Steam 客户端 → 社区 → 创意工坊 → 我的创意工坊物品（或浏览器 https://steamcommunity.com/my/workshopfiles/?appid=4348910）
    - 找到该物品 → 编辑 → “预览图像” → 上传 `mod/preview.png`（512×512，112 KB）
    这条网页/客户端路径走新版 UGC 存储，不会触发上面的 legacy cloud 限制。
-3. 如果网页编辑器也报 limit：先试 JPG（仓库里有 `mod/preview.jpg`，54 KB；对应的 `pipette_vce_compat.jpgpreview.vdf` 是给 steamcmd 再试的版本），
+3. 如果网页编辑器也报 limit：先试 JPG（仓库里有 `workshop/preview.jpg`，54 KB；对应的 `pipette_vce_compat.jpgpreview.vdf` 是给 steamcmd 再试的版本），
    或等 24 小时（新账号/UGC 上传有速率限制），或换用基于 Steamworks SDK 的上传工具（如 SteamWorkshopUploader）。
 
 ## 4. 上传后：在创意工坊页面上完善
