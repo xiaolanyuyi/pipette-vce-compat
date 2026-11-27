@@ -153,6 +153,26 @@ cd 'E:\knowledge base\tools\workshop-uploader\bin'
 > ```
 >
 > 然后再跑工具；还不行就用管理员 PowerShell，或改用方案 B 的 GUI 工具。
+### 方案 C（本仓库自带小工具）：WsMeta
+
+steamcmd 不支持 tags、网页也不给改封面/标签时，用仓库里的 `tools/wsmeta`（C# 直连 Steamworks SDK，
+不写 AppData、不需要 .NET 运行时外的东西）。已编译好的版本在
+`E:\knowledge base\tools\wsmeta\dist\`：
+
+- `WsMeta.exe`（自包含单文件）
+- `steam_api64.dll`、`steam_appid.txt`（内容 4348910）、`preview.png`
+- `run-wsmeta.bat`（双击运行）、`WsMeta.log`（运行日志）
+
+运行前提：Steam 客户端正在运行并登录着上传账号。然后：
+
+```powershell
+cd 'E:\knowledge base\tools\wsmeta\dist'
+.\WsMeta.exe
+```
+
+默认给物品 `3846674523` 设置封面 `preview.png`、标签 `Mod, Gameplay, Simplified Chinese`，
+并用 `SubmitItemUpdate` 提交（不重传内容）。输出 `EResult=1` 即成功；日志见 `WsMeta.log`。
+源码见仓库 `tools/wsmeta/`。
 ### 方案 B（GUI 备选）：nihilocrat/SteamWorkshopUploader Build 10
 
 下载：https://github.com/nihilocrat/SteamWorkshopUploader/releases/download/Build10/SteamWorkshopUploader_10_win.zip
@@ -179,6 +199,26 @@ Invoke-RestMethod -Uri 'https://api.steampowered.com/ISteamRemoteStorage/GetPubl
 
 去问一下 Pen / gdm56 是怎么给这个 App 的模组设置预览图和标签的（他们的物品都有封面），
 或者用他们的上传配置作参考。理论上任何基于 Steamworks SDK 的工具都可以。
+### 方案 C（本仓库自带小工具）：WsMeta
+
+steamcmd 不支持 tags、网页也不给改封面/标签时，用仓库里的 `tools/wsmeta`（C# 直连 Steamworks SDK，
+不写 AppData、不需要 .NET 运行时外的东西）。已编译好的版本在
+`E:\knowledge base\tools\wsmeta\dist\`：
+
+- `WsMeta.exe`（自包含单文件）
+- `steam_api64.dll`、`steam_appid.txt`（内容 4348910）、`preview.png`
+- `run-wsmeta.bat`（双击运行）、`WsMeta.log`（运行日志）
+
+运行前提：Steam 客户端正在运行并登录着上传账号。然后：
+
+```powershell
+cd 'E:\knowledge base\tools\wsmeta\dist'
+.\WsMeta.exe
+```
+
+默认给物品 `3846674523` 设置封面 `preview.png`、标签 `Mod, Gameplay, Simplified Chinese`，
+并用 `SubmitItemUpdate` 提交（不重传内容）。输出 `EResult=1` 即成功；日志见 `WsMeta.log`。
+源码见仓库 `tools/wsmeta/`。
 ## 4. 上传后：在创意工坊页面上完善
 
 物品地址：`https://steamcommunity.com/sharedfiles/filedetails/?id=<上一步打印的 id>`
