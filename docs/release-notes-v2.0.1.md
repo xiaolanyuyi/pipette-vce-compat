@@ -3,6 +3,8 @@
 **移液枪 × 原版化学扩展 兼容补丁**，适用于《深空当铺·可能是偷的》**1.0.0.16（VERSION 100-Rev16）**，
 前置：Pen的移液枪 1.1.5 + 原版化学扩展 1.11.1。
 
+**Steam 创意工坊：https://steamcommunity.com/sharedfiles/filedetails/?id=3846674523**
+
 ### 本版变更
 - `manifest.xml` 的 `<GameVersions>` 从旧编号 `0.46D` 改为 `1.0.0`（覆盖 1.0.0.16；旧编号在 1.0 之后会被忽略）。
 - 新增 `preview.png`（512×512）：模组菜单 / 创意工坊预览图。

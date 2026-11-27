@@ -3,6 +3,8 @@
 > **Pipette × Vanilla Chem Ext Compat** — an unofficial compatibility patch for the game  
 > **《深空当铺·可能是偷的》(Probably Stolen) 1.0.0.16（VERSION 100-Rev16）**
 
+**Steam 创意工坊（已发布）：https://steamcommunity.com/sharedfiles/filedetails/?id=3846674523**
+
 ![预览 / preview](mod/preview.png)
 
 让 **Pen的移液枪**（超级移液枪 / 自动移液枪）给 **原版化学扩展 (Vanilla Chemistry Expansion)** 的配方做

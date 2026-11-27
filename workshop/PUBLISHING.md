@@ -199,6 +199,31 @@ Invoke-RestMethod -Uri 'https://api.steampowered.com/ISteamRemoteStorage/GetPubl
 
 去问一下 Pen / gdm56 是怎么给这个 App 的模组设置预览图和标签的（他们的物品都有封面），
 或者用他们的上传配置作参考。理论上任何基于 Steamworks SDK 的工具都可以。
+## 3.7 封面图始终传不上：Steam Cloud 配额满
+
+如果 `SetItemPreview` / `previewfile` 反复报：
+
+```
+Failed to upload workshop preview file ... (Limit exceeded)
+src\clientdll\clientugc.cpp (2088) : k_EPublishedFileStorageSystemLegacyCloud == eStorage
+```
+
+而且换成 JPG、换小图、换 steamcmd/SDK/网页工具都一样失败，那基本是**这个游戏的 Steam Cloud 配额满了**。
+Workshop 的封面图会写进该游戏的 Steam Cloud，配额满时任何工具都传不上去。自检：
+
+```powershell
+WsMeta.exe --cloud-info
+# cloud quota: total=190.7 MB, available=0.0 MB   ← 可用 0 就是满了
+```
+
+处理：腾出几 MB 云端空间，任选：
+
+- 游戏内删 1~2 个不用的旧存档；
+- Steam 客户端 → 设置 → 云 → 该游戏的云文件 → 删除旧存档的云端副本（本地文件保留）；
+- 或用本仓库工具删指定云端文件（本地存档不动）：
+  `WsMeta.exe delete-cloud="Questing Goose Studio/Probably Stolen/save_11_day1_20261031-214610.es3"`
+
+腾出空间后再运行一次 `WsMeta.exe`（默认补内容+标签+封面，`--no-preview` 只补标签）即可。
 ## 4. 上传后：在创意工坊页面上完善
 
 物品地址：`https://steamcommunity.com/sharedfiles/filedetails/?id=<上一步打印的 id>`
