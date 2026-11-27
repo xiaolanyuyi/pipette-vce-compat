@@ -46,6 +46,36 @@ steamcmd +login <你的Steam账号> +workshop_build_item "E:\knowledge base\pipe
 - 第一次上传若报错提示法律协议，按提示在浏览器里同意一次后重试。
 - 上传完成后的日志形如：`Success. Published file id: 1234567890`。
 
+## 3.5 故障排查：`Uploading preview image ... Limit exceeded`
+
+现象（2026-11 实测）：内容上传正常，卡在预览图这一步：
+
+```
+Preparing content...
+Uploading content...
+Uploading preview image...src\clientdll\clientugc.cpp (2088) : k_EPublishedFileStorageSystemLegacyCloud == eStorage
+ERROR! Failed to update workshop item (Limit exceeded).
+```
+
+`Limit exceeded` 是 Steam 的 `EResultLimitExceeded`：出现在预览图上传阶段通常是预览图 >1 MB，
+或该账号/该 App 的 Steam Cloud 空间不足；而这里的 assert 说明 steamcmd 的“预览图上传”走的是旧版云存储路径，
+与这个 App 的 UGC 存储系统不匹配 —— **用 steamcmd 给这个游戏传预览图基本走不通**。
+
+**绕开办法（推荐）**：先不带预览图上传内容，再在物品页面补预览图。
+
+1. 用 `workshop/pipette_vce_compat.nopreview.vdf`（已去掉 `previewfile` 行，`publishedfileid` 保留上一步创建出来的 id）：
+
+   ```
+   workshop_build_item "E:\knowledge base\pipette-vce-compat\workshop\pipette_vce_compat.nopreview.vdf"
+   ```
+
+2. 看到 `Success. Published file id: ...` 后，打开 Steam 客户端 → 社区 → 创意工坊 → 我的创意工坊物品
+   （或浏览器 https://steamcommunity.com/my/workshopfiles/?appid=4348910 ），编辑该物品：
+   - 上传**预览图**（`mod/preview.png`，112 KB）
+   - 粘贴描述（`description.bbcode`）、勾选标签、把可见性改为公开
+3. 如果连“无预览图”上传也报 `Limit exceeded`：把 VDF 的 `publishedfileid` 改回 `0` 重新创建新物品，
+   或把 `visibility` 改成 `0` 再试；仍失败则检查 Steam 客户端「设置 → 云」的云存储，并等几小时再试（新账号有速率限制）。
+4. 如果页面编辑里**也**传不上预览图：把 `preview.png` 另存为 JPG（同样 512×512、<1 MB）再试；Steam 预览 PNG/JPG 都接受。
 ## 4. 上传后：在创意工坊页面上完善
 
 物品地址：`https://steamcommunity.com/sharedfiles/filedetails/?id=<上一步打印的 id>`
