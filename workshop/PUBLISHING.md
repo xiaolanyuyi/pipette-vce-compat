@@ -119,6 +119,8 @@ Steam 网页只允许改**标题 / 描述 / 截图**；**标签（tags）和封�
 
 ### 方案 A（推荐，已下载到本机）：nozwock/steam-workshop-uploader 0.2.0
 
+一键脚本：`workshop/set-metadata.ps1`（在普通 PowerShell 里运行；会自动 init + update 并核对结果）。
+
 路径：`E:\knowledge base\tools\workshop-uploader\bin\workshop.exe`（旁边已有 `steam_api64.dll`）。
 先把 `workshop/steam_appid.txt` 复制到该 bin 目录（内容 `4348910`，保险起见）。
 
