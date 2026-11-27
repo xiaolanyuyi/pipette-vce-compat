@@ -153,6 +153,17 @@ cd 'E:\knowledge base\tools\workshop-uploader\bin'
 > ```
 >
 > 然后再跑工具；还不行就用管理员 PowerShell，或改用方案 B 的 GUI 工具。
+### 方案 B（GUI 备选）：nihilocrat/SteamWorkshopUploader Build 10
+
+下载：https://github.com/nihilocrat/SteamWorkshopUploader/releases/download/Build10/SteamWorkshopUploader_10_win.zip
+
+1. 解压后，用本仓库的 `workshop/steam_appid.txt` 覆盖程序目录里的同名文件（原内容是 480）。
+2. 用 `workshop/SteamWorkshopUploader.config.json` 覆盖程序目录的 `config.json`（内含本 App 合法标签校验）。
+3. 启动 Steam 客户端并登录 → 运行程序 → 在列表里新建一个条目。
+4. 关闭程序，编辑生成的 `WorkshopContent\<条目>.workshop.json`，按 `workshop/workshop-item.template.json`
+   填入 `publishedfileid` = `3846674523`（更新已有物品而不是新建），保存。
+5. 重新打开程序 → 选中条目 → Upload / Update。
+
 ### 方案 C（本仓库自带小工具）：WsMeta
 
 steamcmd 不支持 tags、网页也不给改封面/标签时，用仓库里的 `tools/wsmeta`（C# 直连 Steamworks SDK，
@@ -173,17 +184,6 @@ cd 'E:\knowledge base\tools\wsmeta\dist'
 默认给物品 `3846674523` 设置封面 `preview.png`、标签 `Mod, Gameplay, Simplified Chinese`，
 并用 `SubmitItemUpdate` 提交（不重传内容）。输出 `EResult=1` 即成功；日志见 `WsMeta.log`。
 源码见仓库 `tools/wsmeta/`。
-### 方案 B（GUI 备选）：nihilocrat/SteamWorkshopUploader Build 10
-
-下载：https://github.com/nihilocrat/SteamWorkshopUploader/releases/download/Build10/SteamWorkshopUploader_10_win.zip
-
-1. 解压后，用本仓库的 `workshop/steam_appid.txt` 覆盖程序目录里的同名文件（原内容是 480）。
-2. 用 `workshop/SteamWorkshopUploader.config.json` 覆盖程序目录的 `config.json`（内含本 App 合法标签校验）。
-3. 启动 Steam 客户端并登录 → 运行程序 → 在列表里新建一个条目。
-4. 关闭程序，编辑生成的 `WorkshopContent\<条目>.workshop.json`，按 `workshop/workshop-item.template.json`
-   填入 `publishedfileid` = `3846674523`（更新已有物品而不是新建），保存。
-5. 重新打开程序 → 选中条目 → Upload / Update。
-
 ### 验证
 
 完成后刷新物品页：右侧方形预览图和标签应出现；也可以用 Steam API 核对：
