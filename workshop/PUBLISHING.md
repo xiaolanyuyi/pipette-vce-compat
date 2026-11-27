@@ -76,6 +76,36 @@ ERROR! Failed to update workshop item (Limit exceeded).
 3. 如果连“无预览图”上传也报 `Limit exceeded`：把 VDF 的 `publishedfileid` 改回 `0` 重新创建新物品，
    或把 `visibility` 改成 `0` 再试；仍失败则检查 Steam 客户端「设置 → 云」的云存储，并等几小时再试（新账号有速率限制）。
 4. 如果页面编辑里**也**传不上预览图：把 `preview.png` 另存为 JPG（同样 512×512、<1 MB）再试；Steam 预览 PNG/JPG 都接受。
+
+### 实际日志结论（2026-11-27 实测，appid 4348910）
+
+```
+D:\SteamCMD\logs\workshop_log.txt:
+[AppID 4348910] Create new workshop item ... : 3846674523 (OK)
+[AppID 4348910] Uploaded new content ( ManifestID 781683043439129910 ) for item 3846674523.
+[AppID 4348910] Failed to upload workshop preview file ...preview.png (Limit exceeded)
+
+D:\SteamCMD\logs\cloud_log.txt:
+[AppID 4348910] UGC Upload Limit exceeded for file previewfile_3846674523.png
+
+D:\SteamCMD\logs\stderr.txt:
+src\clientdll\clientugc.cpp (2088) : k_EPublishedFileStorageSystemLegacyCloud == eStorage
+```
+
+**结论**：内容（depot manifest）上传是成功的，只有 `previewfile` 失败。原因不是图片太大（112 KB < 1 MB），
+而是 steamcmd 的预览图上传走 Steam 旧版云存储（legacy cloud）路径，而 4348910 这个 App 的创意工坊用的是
+新版 UGC 云存储（assert 期望 legacy 但实际不是），于是被判定为 `UGC Upload Limit exceeded`。
+**steamcmd 对这个游戏的预览图上传走不通**，但内容可以正常上传。
+
+**正确做法**：
+1. 用 `pipette_vce_compat.nopreview.vdf` 补一次“无预览图更新”，让物品更新完整落地（应打印 `Success.`）。
+2. 预览图改用 **Steam 客户端/网页的物品编辑器**上传：
+   - Steam 客户端 → 社区 → 创意工坊 → 我的创意工坊物品（或浏览器 https://steamcommunity.com/my/workshopfiles/?appid=4348910）
+   - 找到该物品 → 编辑 → “预览图像” → 上传 `mod/preview.png`（512×512，112 KB）
+   这条网页/客户端路径走新版 UGC 存储，不会触发上面的 legacy cloud 限制。
+3. 如果网页编辑器也报 limit：先试 JPG（仓库里有 `mod/preview.jpg`，54 KB；对应的 `pipette_vce_compat.jpgpreview.vdf` 是给 steamcmd 再试的版本），
+   或等 24 小时（新账号/UGC 上传有速率限制），或换用基于 Steamworks SDK 的上传工具（如 SteamWorkshopUploader）。
+
 ## 4. 上传后：在创意工坊页面上完善
 
 物品地址：`https://steamcommunity.com/sharedfiles/filedetails/?id=<上一步打印的 id>`
