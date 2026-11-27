@@ -46,7 +46,9 @@ steamcmd +login <你的Steam账号> +workshop_build_item "E:\knowledge base\pipe
 - 第一次上传若报错提示法律协议，按提示在浏览器里同意一次后重试。
 - 上传完成后的日志形如：`Success. Published file id: 1234567890`。
 
-## 4. 在创意工坊页面上完善
+## 4. 上传后：在创意工坊页面上完善
+
+物品地址：`https://steamcommunity.com/sharedfiles/filedetails/?id=<上一步打印的 id>`
 
 打开新物品页面（Steam → 创意工坊 → 你的物品），至少做这几件事：
 
