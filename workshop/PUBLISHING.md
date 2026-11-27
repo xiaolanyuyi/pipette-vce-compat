@@ -30,7 +30,7 @@
 | `publishedfileid` | `0` = 新建；上传后 steamcmd 会把新 id 写回这个文件 |
 | `contentfolder` | 模组文件夹（默认指向本仓库的 `mod`） |
 | `previewfile` | `mod/preview.png` |
-| `visibility` | `0` 公开 / `1` 仅好友 / `2` 隐藏（建议先用 `2` 测试） |
+| `visibility` | `0` 公开 / `1` 仅好友 / `2` 隐藏。**注意：每次更新都会按 VDF 里的值重设可见性**，所以首次测试临时用 `2`、测试完必须改回 `0`，否则下一次更新会把物品重新隐藏 |
 | `title` / `description` / `changenote` | 标题 / 说明 / 本次更新说明 |
 
 > 说明文字里的 Steam BBCode 直接贴到创意工坊网页的"描述"框里最省事（见第 4 步）；
@@ -53,7 +53,7 @@ steamcmd +login <你的Steam账号> +workshop_build_item "E:\knowledge base\pipe
 1. **描述**：把 `workshop/description.bbcode` 的内容整段贴进描述框（Steam 支持 `[h1]`、`[list]`、`[url]` 等 BBCode）。
 2. **标签**：同游戏其他模组常见标签是 `Mod` / `Gameplay` / `tools`，按需勾选。
 3. **预览图**：确认已显示 `preview.png`；若没有，在页面右侧"预览图像"里重新上传。
-4. **可见性**：测试完成后从"隐藏"改成"公开"。
+4. **可见性**：测试完成后从"隐藏"改成"公开"，并把 VDF 里的 `visibility` 改回 `0`（后续更新会按 VDF 重设可见性）。
 5. 检查**前置**：本模组在 manifest 里已声明两个前置，玩家启用时会检查；描述里也写清了需要手动订阅。
 
 ## 5. 更新已发布物品
