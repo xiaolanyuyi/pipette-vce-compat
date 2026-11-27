@@ -44,7 +44,7 @@ static class Program
 
     const uint APP_ID = 4348910;
     const ulong DEFAULT_ITEM = 3846674523;
-    const string DEFAULT_CONTENT = @"E:\knowledge base\pipette-vce-compat\mod";
+    const string DEFAULT_CONTENT = @"E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\mod";
     const string DEFAULT_TITLE = "移液枪 × 原版化学扩展 兼容补丁 / Pipette × Vanilla Chem Ext Compat";
     const string DEFAULT_DESC = "一键配平兼容补丁。需要 Pen的移液枪 + 原版化学扩展；详见创意工坊页面。";
 

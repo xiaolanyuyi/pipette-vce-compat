@@ -12,7 +12,7 @@ steamcmd 不支持 Workshop 的 **tags**，网页也不给改**封面预览图**
 - Steam 客户端正在运行并登录上传账号
 - 同目录有 `steam_api64.dll`（从 Steamworks SDK 或本工具发行包获取）
 - 同目录有 `steam_appid.txt`，内容 `4348910`
-- 默认内容目录：`E:\knowledge base\pipette-vce-compat\mod`
+- 默认内容目录：`E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\mod`
 
 ## 常用命令
 

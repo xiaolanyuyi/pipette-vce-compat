@@ -6,7 +6,7 @@ $ErrorActionPreference = 'Stop'
 $docs = Split-Path -Parent $MyInvocation.MyCommand.Path
 $content = (Resolve-Path (Join-Path (Split-Path -Parent $docs) 'mod')).Path
 
-$toolDir = 'E:\knowledge base\tools\workshop-uploader\bin'
+$toolDir = 'E:\01TestProject\ProbablyStolen-PipetteVceCompat\tools\workshop-uploader\bin'
 $exe = Join-Path $toolDir 'workshop.exe'
 if (-not (Test-Path $exe)) {
     throw "没找到 $exe —— 请先解压 nozwock/steam-workshop-uploader 0.2.0 的 Windows 版，或改这里的路径。"

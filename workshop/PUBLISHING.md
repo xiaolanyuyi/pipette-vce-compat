@@ -39,7 +39,7 @@
 ## 3. 上传
 
 ```powershell
-steamcmd +login <你的Steam账号> +workshop_build_item "E:\knowledge base\pipette-vce-compat\workshop\pipette_vce_compat.vdf" +quit
+steamcmd +login <你的Steam账号> +workshop_build_item "E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\workshop\pipette_vce_compat.vdf" +quit
 ```
 
 - 会提示密码和 Steam Guard；登录成功后上传，steamcmd 会打印新物品的 **item id**，并把它写回 VDF 的 `publishedfileid`。
@@ -66,7 +66,7 @@ ERROR! Failed to update workshop item (Limit exceeded).
 1. 用 `workshop/pipette_vce_compat.nopreview.vdf`（已去掉 `previewfile` 行，`publishedfileid` 保留上一步创建出来的 id）：
 
    ```
-   workshop_build_item "E:\knowledge base\pipette-vce-compat\workshop\pipette_vce_compat.nopreview.vdf"
+   workshop_build_item "E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\workshop\pipette_vce_compat.nopreview.vdf"
    ```
 
 2. 看到 `Success. Published file id: ...` 后，打开 Steam 客户端 → 社区 → 创意工坊 → 我的创意工坊物品
@@ -121,19 +121,19 @@ Steam 网页只允许改**标题 / 描述 / 截图**；**标签（tags）和封�
 
 一键脚本：`workshop/set-metadata.ps1`（在普通 PowerShell 里运行；会自动 init + update 并核对结果）。
 
-路径：`E:\knowledge base\tools\workshop-uploader\bin\workshop.exe`（旁边已有 `steam_api64.dll`）。
+路径：`E:\01TestProject\ProbablyStolen-PipetteVceCompat\tools\workshop-uploader\bin\workshop.exe`（旁边已有 `steam_api64.dll`）。
 先把 `workshop/steam_appid.txt` 复制到该 bin 目录（内容 `4348910`，保险起见）。
 
 ```powershell
-cd 'E:\knowledge base\tools\workshop-uploader\bin'
+cd 'E:\01TestProject\ProbablyStolen-PipetteVceCompat\tools\workshop-uploader\bin'
 
 # 1) 在内容目录生成 workshop.toml（工具会自动把它排除在上传内容之外）
-.\workshop.exe init --content 'E:\knowledge base\pipette-vce-compat\mod' --app-id 4348910 --item-id 3846674523 `
+.\workshop.exe init --content 'E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\mod' --app-id 4348910 --item-id 3846674523 `
   --tag Mod --tag Gameplay --tag 'Simplified Chinese'
 
 # 2) 只更新元数据（标签 + 预览图），不重传内容
-.\workshop.exe update --content 'E:\knowledge base\pipette-vce-compat\mod' `
-  --preview 'E:\knowledge base\pipette-vce-compat\mod\preview.png' `
+.\workshop.exe update --content 'E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\mod' `
+  --preview 'E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\mod\preview.png' `
   --tag Mod --tag Gameplay --tag 'Simplified Chinese' `
   --visibility Public --no-content-update
 ```
@@ -168,7 +168,7 @@ cd 'E:\knowledge base\tools\workshop-uploader\bin'
 
 steamcmd 不支持 tags、网页也不给改封面/标签时，用仓库里的 `tools/wsmeta`（C# 直连 Steamworks SDK，
 不写 AppData、不需要 .NET 运行时外的东西）。已编译好的版本在
-`E:\knowledge base\tools\wsmeta\dist\`：
+`E:\01TestProject\ProbablyStolen-PipetteVceCompat\tools\wsmeta\dist\`：
 
 - `WsMeta.exe`（自包含单文件）
 - `steam_api64.dll`、`steam_appid.txt`（内容 4348910）、`preview.png`
@@ -177,7 +177,7 @@ steamcmd 不支持 tags、网页也不给改封面/标签时，用仓库里的 `
 运行前提：Steam 客户端正在运行并登录着上传账号。然后：
 
 ```powershell
-cd 'E:\knowledge base\tools\wsmeta\dist'
+cd 'E:\01TestProject\ProbablyStolen-PipetteVceCompat\tools\wsmeta\dist'
 .\WsMeta.exe
 ```
 

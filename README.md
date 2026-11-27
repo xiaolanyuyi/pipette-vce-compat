@@ -138,7 +138,7 @@
 快速开始：
 
 ```powershell
-steamcmd +login <你的Steam账号> +workshop_build_item "E:\knowledge base\pipette-vce-compat\workshop\pipette_vce_compat.vdf" +quit
+steamcmd +login <你的Steam账号> +workshop_build_item "E:\01TestProject\ProbablyStolen-PipetteVceCompat\repo\workshop\pipette_vce_compat.vdf" +quit
 ```
 
 上传成功后 steamcmd 会把新物品 id 回写到 VDF；之后原样再跑一次就是更新。
